@@ -11,7 +11,8 @@ daily_sales = np.random.randint(50, 500, size = 365)
 
 """ROUND 2"""
 
-dates = np.arange('2025-01-01', '2026-01-01', dtype='datetime64[D]')
+# dates = np.arange('2025-01-01', '2026-01-01', dtype='datetime64[D]')
+dates = pd.date_range(start='2025-01-01', periods=365)
 # print(dates)
 
 dates_with_sales = pd.Series(daily_sales, index=dates)
@@ -53,9 +54,9 @@ anomalijos = dates_with_sales[np.abs((dates_with_sales - mean)) > dvigubas_nuokr
 print("Anomalijų datos ir pardavimų kiekiai:")
 print(anomalijos)
 
-plt.figure(figsize=(10,5)) # plotis / aukštis
-plt.plot(dates_with_sales, label='Pardavimai') # Braižo linijinį grafiką | x = datos, y = pardavimu kiekiai
-plt.scatter(anomalijos.index, anomalijos.values, color='red', label='Anomalijos') # Prideda taškų grafiką, x = dienos, y = pardavimai.
-plt.legend() # parodo 'legenda' panaudoja label reiksmes is anksciau.
-plt.title("Dieniniai pardavimai su anomalijomis") # grafiko pavadinimas virsuj
-plt.show()
+# plt.figure(figsize=(10,5)) # plotis / aukštis
+# plt.plot(dates_with_sales, label='Pardavimai') # Braižo linijinį grafiką | x = datos, y = pardavimu kiekiai
+# plt.scatter(anomalijos.index, anomalijos.values, color='red', label='Anomalijos') # Prideda taškų grafiką, x = dienos, y = pardavimai.
+# plt.legend() # parodo 'legenda' panaudoja label reiksmes is anksciau.
+# plt.title("Dieniniai pardavimai su anomalijomis") # grafiko pavadinimas virsuj
+# plt.show()

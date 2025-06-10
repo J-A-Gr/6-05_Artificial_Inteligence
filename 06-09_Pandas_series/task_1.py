@@ -9,7 +9,7 @@ class SerijosAnalize:
         print(self.s)
 
     def penktas_elementas_is_serijos(self):
-        print(self.s[4])
+        print(self.s[4]) # iprasti naudoti iloc
 
     def visi_isskyrus_pirma_paskutini(self):
         print(self.s[1:-1])
