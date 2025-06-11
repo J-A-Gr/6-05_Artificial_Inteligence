@@ -13,7 +13,7 @@
 **Parsisiųskite duomenų rinkinį iš šios nuorodos https://www.kaggle.com/competitions/titanic/data?select=train.csv**
 
 1. -- •Padėkite ji į savo projekto aplanką ar kitoje vietoje ir užkraukite jį kaip dataframe
-2. •Sutvarkykite trūkstamas reikšmes savo nuožiūra (trūkstamas reikšmes rasti jau mokate) (turi nelikti nei vienos trūkstamos reikšmės).
+2. -- •Sutvarkykite trūkstamas reikšmes savo nuožiūra (trūkstamas reikšmes rasti jau mokate) (turi nelikti nei vienos trūkstamos reikšmės).
 3. •Sukurkite bendrą stulpelį susumavę brolius seseris ir tėvus, kad sužinotumėte šeimos dydį, senus stulpelius galite pašalinti (Parchir SibSp).
 4. •Įsiaiškinkite, ar žmonės keliavo vieni ar ne (naujas stulpelis IsAlone).
 5. •Sukurkite naują stulpelį, kuris sugrupuos asmenis pagal amžių į grupes ( <18 vaikas, < 65 suauges, > 65 senjoras)
