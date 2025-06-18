@@ -1,10 +1,12 @@
+from matplotlib import pyplot as plt
+import numpy as np
 import pandas as pd
-from sklearn.model_selection import train_test_split
+from sklearn.model_selection import KFold, StratifiedKFold, cross_val_score, train_test_split
 from sklearn.preprocessing import StandardScaler
-from sklearn.linear_model import LogisticRegression
+from sklearn.linear_model import LinearRegression, LogisticRegression
 from sklearn.metrics import classification_report, confusion_matrix, accuracy_score
-
-df = pd.read_csv("data.csv")
+import seaborn as sns
+from sklearn.neighbors import KNeighborsClassifier
 
 
 # print(df.head(5))
@@ -50,7 +52,7 @@ X = df_selected.drop("Bankrupt?", axis=1)
 y = df_selected["Bankrupt?"]
 
 # Split into training and testing sets
-X_train, X_test, y_train, y_test = train_test_split( X, y, test_size=0.23, random_state=95)
+X_train, X_test, y_train, y_test = train_test_split( X, y, test_size=0.23, random_state=42)
 
 # Scale the features
 # scaler = StandardScaler()
@@ -59,10 +61,27 @@ X_train, X_test, y_train, y_test = train_test_split( X, y, test_size=0.23, rando
 
 
 # Train logistic regression
-model = LogisticRegression(class_weight="balanced", max_iter=1000)
+# model = LogisticRegression(class_weight="balanced", max_iter=1000)
+model = KNeighborsClassifier(n_neighbors=20)
+
 model.fit(X_train, y_train)
 
-# Predict on test data
+
+####################################################################################
+"""Class work 06 18"""
+####################################################################################
+# linear_model = LinearRegression()
+kfold = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
+
+log_score = cross_val_score(model, X_train, y_train, cv=kfold, scoring="accuracy")
+"""accuracy, f1 and roc_auc"""
+
+print(log_score)
+print(np.average(log_score))
+
+####################################################################################
+
+"""# Predict on test data"""
 y_pred = model.predict(X_test)
 
 # Evaluate model
@@ -70,3 +89,12 @@ print("Confusion Matrix:")
 print(confusion_matrix(y_test, y_pred))
 print("\nClassification Report:")
 print(classification_report(y_test, y_pred))
+
+
+##########################################################
+
+sns.heatmap(confusion_matrix(y_test, y_pred), annot=True, fmt='d', cmap='Blues')
+plt.title("Confusion Matrix")
+plt.xlabel("Predicted")
+plt.ylabel("Actual")
+# plt.show()
