@@ -14,3 +14,23 @@ linear_score = cross_val_score(linear_model, x_reg, y_reg, cv=kfold, scoring="r2
 
 print(linear_score)
 print(np.average(linear_score))
+
+############################################################
+
+"""df = pd.read_csv("personality_dataset.csv")
+
+
+print(df.head())
+
+target = df["Personality"]
+data = df.drop(columns="Personality")
+
+encoder_label = LabelEncoder()
+
+encoder_label.fit(target)
+
+targets_encoded = encoder_label.transform(target)
+
+print(targets_encoded)
+
+print(encoder_label.inverse_transform(targets_encoded))"""
