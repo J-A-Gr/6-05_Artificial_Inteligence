@@ -49,13 +49,14 @@ y_pred_orig = np.expm1(y_pred)
 y_test_orig = np.expm1(y_test)
 
 print("Hold-out Results (RandomForest):")
-print(" MSE :", mean_squared_error(y_test_orig, y_pred_orig))
-print(" MAE :", mean_absolute_error(y_test_orig, y_pred_orig))
-print(" R²  :", r2_score(y_test_orig, y_pred_orig))
+print(" MSE :", mean_squared_error(y_test_orig, y_pred_orig)) # (Mean Squared Error) | Lower is better. Squaring penalizes larger errors more strongly. 
+print(" MAE :", mean_absolute_error(y_test_orig, y_pred_orig)) # (Mean Absolute Error) | A value of 'result' means the model’s predictions are off by ~0.0212 units on average.
+print(" R²  :", r2_score(y_test_orig, y_pred_orig))  # Ranges from 0 (model explains nothing) to 1 (perfect explanation).
 
-cv_r2 = cross_val_score(model, X, np.log1p(y), cv=5, scoring="r2")
-print("\n5-Fold CV R² on log1p(y):", cv_r2)
-print("Mean CV R²:", cv_r2.mean())
+# Perform 5-fold cross-validation
+cv_scores = cross_val_score(model, X, np.log1p(y), cv=5, scoring="r2")
 
+print(f"5-Fold CV R² scores: {cv_scores}")
+print(f"Mean CV R²: {cv_scores.mean():.4f}")
 # print(df.head())
 # print(df.describe())
