@@ -14,17 +14,6 @@ df = pd.read_csv("vgsales.csv").drop(
 df["Year"] = df["Year"].fillna(df["Year"].median())
 df["Publisher"] = df["Publisher"].fillna("Unknown")
 
-# 3. Remove outliers (±4 std from mean on all numeric columns except target)
-def remove_outliers_4std(df, cols_to_filter):
-    for col in cols_to_filter:
-        mean = df[col].mean()
-        std = df[col].std()
-        df = df[(df[col] >= mean - 4 * std) & (df[col] <= mean + 4 * std)]
-    return df
-
-df = remove_outliers_4std(df, ["Year"])
-df = remove_outliers_4std(df, ["Global_Sales"])
-
 # 4. Reduce Publisher cardinality
 top_publishers = df["Publisher"].value_counts().nlargest(20).index
 df["Publisher"] = df["Publisher"].where(df["Publisher"].isin(top_publishers), "Other")
